@@ -120,11 +120,9 @@ step.
 
 ### 2. Log in to Zepto
 
-This only has to happen once. Zepto's login only redirects back to `localhost`, so if you're
-setting this up on a server, forward the port over SSH:
+This only has to happen once.
 
 ```bash
-ssh -L 8765:localhost:8765 <server>
 docker compose run --rm -p 127.0.0.1:8765:8765 -e ZEPTO_LOGIN_BIND_HOST=0.0.0.0 \
     app python scripts/zepto_login.py
 docker compose run --rm app python scripts/list_zepto_addresses.py
