@@ -14,12 +14,28 @@ until you've seen the final amount and hit approve, and it's always cash on deli
 
 It runs on an old laptop at home and I use it from my phone.
 
-<p>
-  <img src="docs/screenshots/chat-and-cart.png" alt="Chat that built a cart" width="220">
-  <img src="docs/screenshots/price-comparison.png" alt="Zepto vs Blinkit price check" width="220">
-  <img src="docs/screenshots/review-order.png" alt="Order review before placing" width="220">
-  <img src="docs/screenshots/dark-mode.png" alt="Dark mode" width="220">
-</p>
+<table>
+  <tr>
+    <td align="center">
+      <img src="docs/screenshots/chat-and-cart.png" alt="Chat that built a cart" width="280"><br>
+      Chat and cart
+    </td>
+    <td align="center">
+      <img src="docs/screenshots/price-comparison.png" alt="Zepto vs Blinkit price check" width="280"><br>
+      Price check
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="docs/screenshots/review-order.png" alt="Order review before placing" width="280"><br>
+      Review before ordering
+    </td>
+    <td align="center">
+      <img src="docs/screenshots/dark-mode.png" alt="Dark mode" width="280"><br>
+      Dark mode
+    </td>
+  </tr>
+</table>
 
 ## How it works
 
