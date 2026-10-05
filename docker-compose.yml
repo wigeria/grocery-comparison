@@ -1,0 +1,42 @@
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    # Runs as the host user that owns data/ and db/, so token files stay private.
+    user: "${APP_UID:-1000}:${APP_GID:-1000}"
+    environment:
+      CLAUDE_CODE_OAUTH_TOKEN: ${CLAUDE_CODE_OAUTH_TOKEN:?Set CLAUDE_CODE_OAUTH_TOKEN in .env}
+      # Claude Code's sessions live in data/, so chats resume after restarts.
+      CLAUDE_CONFIG_DIR: /app/data/claude-config
+      HOME: /tmp
+    volumes:
+      - ./config.toml:/app/config.toml:ro
+      - ./data:/app/data
+      - ./db:/app/db
+    expose:
+      - "8000"
+
+  caddy:
+    build: docker/caddy
+    restart: unless-stopped
+    depends_on:
+      app:
+        condition: service_healthy
+    environment:
+      SITE_ADDRESS: ${SITE_ADDRESS:?Set SITE_ADDRESS in .env}
+      CADDY_TLS: ${CADDY_TLS:-internal}
+      DUCKDNS_TOKEN: ${DUCKDNS_TOKEN:-}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./docker/caddy/tls-internal.caddy:/etc/caddy/tls-internal.caddy:ro
+      - ./docker/caddy/tls-duckdns.caddy:/etc/caddy/tls-duckdns.caddy:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  # Certificates and Caddy's account keys. Keeping them avoids re-issuing on every restart.
+  caddy_data:
+  caddy_config:

@@ -1,0 +1,7 @@
+# SITE_ADDRESS is a DuckDNS name (e.g. mygroceries.duckdns.org). Caddy proves
+# ownership by writing the ACME challenge TXT record on it through DuckDNS' API.
+tls {
+	dns duckdns {$DUCKDNS_TOKEN}
+	# Public resolvers, so propagation checks don't depend on the home router's DNS.
+	resolvers 1.1.1.1 8.8.8.8
+}

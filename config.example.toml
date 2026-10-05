@@ -1,0 +1,21 @@
+# Copy to config.toml and fill in. config.toml is gitignored because it holds
+# your address id and home coordinates.
+
+[zepto]
+# Saved Zepto address that every order is delivered to.
+# Run scripts/list_zepto_addresses.py (after logging in) to see the ids.
+delivery_address_id = ""
+
+[blinkit]
+# Coordinates of the delivery address, used to pick Blinkit's nearest store for price
+# comparison. scripts/list_zepto_addresses.py prints these too.
+latitude = 0.0
+longitude = 0.0
+
+[server]
+host = "0.0.0.0"
+port = 8000
+
+[claude]
+# Leave empty to use the Claude Code default model.
+model = ""

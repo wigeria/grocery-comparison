@@ -1,0 +1,9 @@
+# SITE_ADDRESS and CADDY_TLS come from .env. CADDY_TLS picks the certificate method:
+#   internal - Caddy's own certificate authority, for local testing
+#   duckdns  - a real Let's Encrypt certificate, verified through DuckDNS
+{$SITE_ADDRESS} {
+	import /etc/caddy/tls-{$CADDY_TLS}.caddy
+
+	encode zstd gzip
+	reverse_proxy app:8000
+}
